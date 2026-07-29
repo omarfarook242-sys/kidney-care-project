@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidneyCare with Omar - Advanced Renal Health & Diagnostic Portal</title>
+    
+    <!-- SEO Optimization Meta Tags -->
+    <meta name="description" content="KidneyCare with Omar - কিডনির যত্ন, লক্ষণ, চিকিৎসা, পানি পানের গাইডলাইন এবং অনলাইন ডায়াগনস্টিক এসেসমেন্ট।">
+    <meta name="keywords" content="KidneyCare, Omar, CKD Assessment, Kidney Health, Renal Care Bangladesh">
+    <meta name="author" content="Omar">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-navy: #17252A;
+            --ocean-blue: #2B7A78;
+            --teal-blue: #3AAFA9;
+            --soft-ice: #DEF2F1;
+            --pure-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: var(--soft-ice);
+            color: var(--dark-navy);
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, rgba(222, 242, 241, 0.94), rgba(222, 242, 241, 0.88)),
+                              url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar & Language Selector */
+        .top-bar {
+            background-color: var(--dark-navy);
+            color: var(--soft-ice);
+            font-size: 0.85rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(58, 175, 169, 0.3);
+        }
+
+        /* Header Navigation Menu & Logo Branding */
+        .navbar {
+            background-color: rgba(23, 37, 42, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--teal-blue);
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--pure-white) !important;
+        }
+        .brand-accent { color: var(--teal-blue); }
+        .nav-link {
+            color: var(--soft-ice) !important;
+            font-weight: 500;
+            margin: 0 4px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--teal-blue) !important; }
+
+        /* Search Box */
+        .search-box .form-control {
+            border-radius: 20px 0 0 20px;
+            border: 1px solid var(--teal-blue);
+        }
+        .search-box .btn {
+            border-radius: 0 20px 20px 0;
+            background: var(--teal-blue);
+            color: #fff;
+        }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background-color: #fff3cd;
+            color: #856404;
+            border-left: 5px solid #ffc107;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.92rem;
+        }
+
+        /* Assessment Card Styling */
+        .main-card {
+            background: var(--pure-white);
+            border-radius: 18px;
+            border: 2px solid var(--teal-blue);
+            box-shadow: 0 15px 35px rgba(23, 37, 42, 0.08);
+            padding: 35px;
+        }
+
+        .form-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--ocean-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            border: 1.5px solid #c5e3e1;
+            border-radius: 10px;
+            padding: 11px 15px;
+            background-color: #f7fcff;
+        }
+
+        .btn-submit {
+            background-color: var(--ocean-blue);
+            color: var(--pure-white);
+            font-weight: 700;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--dark-navy);
+            color: var(--teal-blue);
+        }
+
+        /* Information & Care Section Cards */
+        .info-card {
+            background: var(--pure-white);
+            border-radius: 16px;
+            border: 1.5px solid var(--teal-blue);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+        }
+
+        .card-heading {
+            color: var(--dark-navy);
+            font-weight: 700;
+            border-bottom: 2px solid var(--soft-ice);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .content-img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #c5e3e1;
+        }
+
+        /* Floating Live Chatbot Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+        }
+        .chat-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--ocean-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            border: 2px solid var(--teal-blue);
+            cursor: pointer;
+        }
+
+        /* Social Links */
+        .social-share a {
+            color: var(--teal-blue);
+            font-size: 1.3rem;
+            margin: 0 10px;
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: var(--dark-navy);
+            color: var(--pure-white);
+            border-top: 3px solid var(--teal-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Utility & Multi-Language Support Bar -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div><i class="fa-solid fa-headset me-2 text-info"></i> <span data-key="support">সাপোর্ট: +৮৮০ ১২৩৪ ৫৬৭ ৮৯০</span></div>
+            <div class="d-flex align-items-center gap-3">
+                <!-- Multi Language Switcher -->
+                <select id="langSelect" class="form-select form-select-sm border-0 py-0 text-white bg-transparent" style="cursor: pointer;" onchange="changeLanguage(this.value)">
+                    <option class="text-dark" value="bn" selected>🌐 বাংলা</option>
+                    <option class="text-dark" value="en">🌐 English</option>
+                </select>
+                <button class="btn btn-sm btn-outline-info text-white border-0" data-bs-toggle="modal" data-bs-target="#authModal">
+                    <i class="fa-solid fa-user me-1"></i> <span data-key="login_btn">লগইন / রেজিস্টার</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation Menu -->
+    <nav class="navbar navbar-expand-lg sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fa-solid fa-heart-pulse text-info me-2 fs-3"></i>
+                <span>KidneyCare <span class="brand-accent">with Omar</span></span>
+            </a>
+            
+            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#assessment" data-key="nav_assess">Assessment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-key="nav_about">কিডনির কাজ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#diseases" data-key="nav_diseases">রোগ ও চিকিৎসা</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#water" data-key="nav_water">পানি পানের নিয়ম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#diet" data-key="nav_diet">খাদ্যাভ্যাস</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-key="nav_contact">যোগাযোগ</a></li>
+                </ul>
+                
+                <!-- Search Functionality -->
+                <form class="d-flex search-box me-2" role="search">
+                    <input class="form-control form-control-sm" type="search" placeholder="তথ্য খুঁজুন..." data-key-placeholder="search_ph">
+                    <button class="btn btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container my-4">
+        
+        <!-- Medical Disclaimer -->
+        <div class="disclaimer-banner mb-4 d-flex align-items-center">
+            <i class="fa-solid fa-triangle-exclamation fs-4 me-3 text-warning"></i>
+            <div data-key="disclaimer">এটি শুধুমাত্র তথ্যগত ও শিক্ষামূলক উদ্দেশ্যে তৈরি। যেকোনো চিকিৎসা বা পরামর্শের জন্য স্বাস্থ্য বিশেষজ্ঞের সাথে যোগাযোগ করুন।</div>
+        </div>
+
+        <!-- SECTION 1: Patient Diagnostic Inputs (Assessment Form) -->
+        <div class="row justify-content-center mb-5" id="assessment">
+            <div class="col-lg-8">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold" style="color: var(--dark-navy);" data-key="assess_title">Chronic Kidney Assessment</h2>
+                    <p class="text-muted" data-key="assess_subtitle">ইনপুটগুলো দিন এবং আপনার কিডনি ডায়াগনস্টিক রিপোর্ট অ্যানালাইসিস করুন</p>
+                </div>
+
+                <div class="main-card">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+                        <h5 class="m-0 fw-bold" style="color: var(--dark-navy);">
+                            <i class="fa-solid fa-notes-medical text-info me-2"></i><span data-key="form_header">Patient Diagnostic Inputs</span>
+                        </h5>
+                        <span class="text-muted small" data-key="req_text">* All metrics required</span>
+                    </div>
+
+                    <form action="/predict" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-user me-1"></i> Age (Years)</label>
+                                <input type="number" step="any" name="age" class="form-control" placeholder="e.g. 48" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-heart-pulse me-1"></i> Blood Pressure (BP)</label>
+                                <input type="number" step="any" name="bp" class="form-control" placeholder="e.g. 80 mm/Hg" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-vial me-1"></i> Specific Gravity (SG)</label>
+                                <input type="number" step="any" name="sg" class="form-control" placeholder="e.g. 1.020" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-droplet me-1"></i> Albumin (AL)</label>
+                                <input type="number" step="any" name="al" class="form-control" placeholder="e.g. 0 to 5" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-flask me-1"></i> Serum Creatinine (SC)</label>
+                                <input type="number" step="any" name="sc" class="form-control" placeholder="e.g. 1.2 mg/dL" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><i class="fa-solid fa-syringe me-1"></i> Hemoglobin (Hemo)</label>
+                                <input type="number" step="any" name="hemo" class="form-control" placeholder="e.g. 15.4 g/dL" required>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-submit w-100" data-key="btn_analyze">
+                                <i class="fa-solid fa-microscope me-2"></i>Analyze Health Data
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5" style="border-color: var(--teal-blue);">
+
+        <!-- SECTION 2: Complete Kidney Care Info with Images -->
+        
+        <!-- ১. কিডনি কী ও এর কাজ -->
+        <div class="info-card" id="about">
+            <div class="row align-items-center g-4">
+                <div class="col-md-7">
+                    <h3 class="card-heading"><i class="fa-solid fa-cubes-stacked text-info me-2"></i><span data-key="sec1_title">১. কিডনি কী ও এর কাজ কী?</span></h3>
+                    <p data-key="sec1_p1">প্রতিটি মানুষের শরীরে পিঠের নিচের দিকে মেরুদণ্ডের দুই পাশে দুটি সীমের বিচির মতো আকারের কিডনি থাকে।</p>
+                    <ul>
+                        <li class="mb-2"><strong data-key="sec1_l1_b">রক্ত ছাঁকন:</strong> <span data-key="sec1_l1_t">রক্ত থেকে বর্জ্য ও ক্ষতিকর টক্সিন ছেঁকে মূত্রের মাধ্যমে বের করে দেওয়া।</span></li>
+                        <li class="mb-2"><strong data-key="sec1_l2_b">পানির ভারসাম্য:</strong> <span data-key="sec1_l2_t">শরীরে পানি ও তরলের সঠিক মাত্রা বজায় রাখা।</span></li>
+                        <li class="mb-2"><strong data-key="sec1_l3_b">ইলেক্ট্রোলাইট ভারসাম্য:</strong> <span data-key="sec1_l3_t">সোডিয়াম, পটাশিয়াম ও ফসফরাসের পরিমাণ নিয়ন্ত্রণ করা।</span></li>
+                        <li class="mb-2"><strong data-key="sec1_l4_b">রক্তচাপ নিয়ন্ত্রণ:</strong> <span data-key="sec1_l4_t">রক্তচাপ স্বাভাবিক রাখতে হরমোন নিঃসরণ করা।</span></li>
+                        <li class="mb-2"><strong data-key="sec1_l5_b">লোহিত রক্তকণিকা তৈরি:</strong> <span data-key="sec1_l5_t">'এরিস্রোপয়েটিন' নামক হরমোন তৈরি করে যা রক্তে লোহিত রক্তকণিকা তৈরিতে সাহায্য করে।</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=800&q=80" class="content-img mb-2" alt="Kidney Anatomy">
+                    <small class="text-muted d-block text-center" data-key="img1_cap">চিত্র: মানবদেহে কিডনির অবস্থান ও মূত্রতন্ত্র</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- ২. কিডনির রোগ ও চিকিৎসা (Table) -->
+        <div class="info-card" id="diseases">
+            <h3 class="card-heading"><i class="fa-solid fa-hospital-user text-danger me-2"></i><span data-key="sec2_title">২. কিডনির সাধারণ রোগ ও তাদের চিকিৎসা/সমাধান</span></h3>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle m-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th data-key="th_1">রোগের নাম</th>
+                            <th data-key="th_2">মূল কারণ</th>
+                            <th data-key="th_3">প্রাথমিক লক্ষণ</th>
+                            <th data-key="th_4">সমাধান / চিকিৎসা</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold" data-key="t1_r1_c1">কিডনিতে পাথর</td>
+                            <td data-key="t1_r1_c2">কম পানি খাওয়া, ক্যাফেইন বা লবণের আধিক্য।</td>
+                            <td data-key="t1_r1_c3">পিঠের একপাশে তীব্র ব্যথা, প্রস্রাবে রক্ত বা তীব্র জ্বালা-পোড়া।</td>
+                            <td data-key="t1_r1_c4">পর্যাপ্ত পানি পান, ওষুধ বা লেজার থেরাপি/অপারেশন।</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold" data-key="t1_r2_c1">UTI ইনফেকশন</td>
+                            <td data-key="t1_r2_c2">মূত্রনালীতে ব্যাকটেরিয়ার সংক্রমণ।</td>
+                            <td data-key="t1_r2_c3">বারবার প্রস্রাবের বেগ, প্রস্রাবে দুর্গন্ধ ও জ্বালা-পোড়া।</td>
+                            <td data-key="t1_r2_c4">অ্যান্টিবায়োটিক এবং প্রচুর পানি ও ডাবের পানি পান।</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold" data-key="t1_r3_c1">AKI (ইনজুরি)</td>
+                            <td data-key="t1_r3_c2">হঠাৎ রক্তপাত, ডিহাইড্রেশন বা ওষুধের প্রতিক্রিয়া।</td>
+                            <td data-key="t1_r3_c3">হঠাৎ প্রস্রাব কমে যাওয়া, পায়ে পানি আসা, শরীর ফোলা।</td>
+                            <td data-key="t1_r3_c4">তাৎক্ষণিক হাসপাতালে ভর্তি ও দ্রুত চিকিৎসা।</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold" data-key="t1_r4_c1">CKD (ক্রনিক)</td>
+                            <td data-key="t1_r4_c2">অনিয়ন্ত্রিত ডায়াবেটিস, দীর্ঘদিনের উচ্চ রক্তচাপ।</td>
+                            <td data-key="t1_r4_c3">ক্ষুধা কমে যাওয়া, বমি ভাব, রাতে বারবার প্রস্রাব, ক্লান্তি।</td>
+                            <td data-key="t1_r4_c4">প্রেশার-ডায়াবেটিস নিয়ন্ত্রণ, ডায়ালালাইসিস বা প্রতিস্থাপন।</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ৩. পানি পানের নিয়ম -->
+        <div class="info-card" id="water">
+            <div class="row align-items-center g-4">
+                <div class="col-md-5">
+                    <img src="https://images.unsplash.com/photo-1548839140-29a749e1bc4e?auto=format&fit=crop&w=800&q=80" class="content-img mb-2" alt="Hydration">
+                </div>
+                <div class="col-md-7">
+                    <h3 class="card-heading"><i class="fa-solid fa-glass-water text-primary me-2"></i><span data-key="sec3_title">৩. কখন এবং কী পরিমাণ পানি খেতে হবে?</span></h3>
+                    <p data-key="sec3_p1"><strong>সাধারণ সুস্থ মানুষের জন্য:</strong> প্রতিদিন গড়ে ২.৫ থেকে ৩ লিটার (৮-১০ গ্লাস) পানি পান করা উচিত।</p>
+                    <h6 class="fw-bold text-navy mt-3" data-key="sec3_h6">পানি পানের সঠিক সময়:</h6>
+                    <ul>
+                        <li data-key="sec3_l1">সকালে ঘুম থেকে উঠে ১-২ গ্লাস।</li>
+                        <li data-key="sec3_l2">খাবার খাওয়ার ৩০ মিনিট আগে বা পরে।</li>
+                        <li data-key="sec3_l3">রাতে ঘুমানোর ঠিক আগে অতিরিক্ত পানি না খাওয়া।</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form (User Engagement) -->
+        <div class="bg-white p-4 rounded-4 border shadow-sm my-5" id="contact">
+            <h5 class="fw-bold mb-3" style="color: var(--dark-navy);"><i class="fa-solid fa-envelope text-info me-2"></i><span data-key="contact_title">স্বাস্থ্য সহায়তায় মেসেজ দিন</span></h5>
+            <form>
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="আপনার নাম" data-key-placeholder="c_name"></div>
+                    <div class="col-md-6"><input type="email" class="form-control" placeholder="আপনার ইমেইল" data-key-placeholder="c_email"></div>
+                    <div class="col-12"><textarea class="form-control" rows="3" placeholder="আপনার প্রশ্ন বা মতামত এখানে লিখুন..." data-key-placeholder="c_msg"></textarea></div>
+                    <div class="col-12"><button class="btn btn-info text-white fw-bold px-4" data-key="c_btn">মেসেজ পাঠান</button></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Live Chatbot Feature Widget -->
+    <div class="chat-widget">
+        <div class="chat-btn" onclick="alert('লাইভ অ্যাসিস্ট্যান্ট চ্যাটবট বর্তমানে সক্রিয় রয়েছে!')">
+            <i class="fa-solid fa-comments"></i>
+        </div>
+    </div>
+
+    <!-- User Login / Registration Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color: var(--dark-navy);">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-lock me-2 text-info"></i>User Login / Register</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" class="form-control" placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="পাসওয়ার্ড">
+                        </div>
+                        <button type="submit" class="btn btn-info w-100 text-white fw-bold">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer & Social Sharing -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <div class="mb-3 social-share">
+                <span class="text-white-50 me-2 small">সোশ্যাল মিডিয়া:</span>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <p class="mb-1 fw-bold" style="color: var(--teal-blue);">KidneyCare with Omar</p>
+            <p class="small text-white-50 m-0">© 2026 Developed for Diagnostic Analysis & Educational Purposes</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Multi-Language Translation Script -->
+    <script>
+        const translations = {
+            bn: {
+                support: "সাপোর্ট: +৮৮০ ১২৩৪ ৫৬৭ ৮৯০",
+                login_btn: "লগইন / রেজিস্টার",
+                nav_assess: "Assessment",
+                nav_about: "কিডনির কাজ",
+                nav_diseases: "রোগ ও চিকিৎসা",
+                nav_water: "পানি পানের নিয়ম",
+                nav_diet: "খাদ্যাভ্যাস",
+                nav_contact: "যোগাযোগ",
+                search_ph: "তথ্য খুঁজুন...",
+                disclaimer: "এটি শুধুমাত্র তথ্যগত ও শিক্ষামূলক উদ্দেশ্যে তৈরি। যেকোনো চিকিৎসা বা পরামর্শের জন্য স্বাস্থ্য বিশেষজ্ঞের সাথে যোগাযোগ করুন।",
+                assess_title: "Chronic Kidney Assessment",
+                assess_subtitle: "ইনপুটগুলো দিন এবং আপনার কিডনি ডায়াগনস্টিক রিপোর্ট অ্যানালাইসিস করুন",
+                form_header: "Patient Diagnostic Inputs",
+                req_text: "* All metrics required",
+                btn_analyze: "Analyze Health Data",
+                sec1_title: "১. কিডনি কী ও এর কাজ কী?",
+                sec1_p1: "প্রতিটি মানুষের শরীরে পিঠের নিচের দিকে মেরুদণ্ডের দুই পাশে দুটি সীমের বিচির মতো আকারের কিডনি থাকে।",
+                sec1_l1_b: "রক্ত ছাঁকন:",
+                sec1_l1_t: "রক্ত থেকে বর্জ্য ও ক্ষতিকর টক্সিন ছেঁকে মূত্রের মাধ্যমে বের করে দেওয়া।",
+                sec1_l2_b: "পানির ভারসাম্য:",
+                sec1_l2_t: "শরীরে পানি ও তরলের সঠিক মাত্রা বজায় রাখা।",
+                sec1_l3_b: "ইলেক্ট্রোলাইট ভারসাম্য:",
+                sec1_l3_t: "সোডিয়াম, পটাশিয়াম ও ফসফরাসের পরিমাণ নিয়ন্ত্রণ করা।",
+                sec1_l4_b: "রক্তচাপ নিয়ন্ত্রণ:",
+                sec1_l4_t: "রক্তচাপ স্বাভাবিক রাখতে হরমোন নিঃসরণ করা।",
+                sec1_l5_b: "লোহিত রক্তকণিকা তৈরি:",
+                sec1_l5_t: "'এরিস্রোপয়েটিন' নামক হরমোন তৈরি করে যা রক্তে লোহিত রক্তকণিকা তৈরিতে সাহায্য করে।",
+                img1_cap: "চিত্র: মানবদেহে কিডনির অবস্থান ও মূত্রতন্ত্র",
+                sec2_title: "২. কিডনির সাধারণ রোগ ও তাদের চিকিৎসা/সমাধান",
+                th_1: "রোগের নাম", th_2: "মূল কারণ", th_3: "প্রাথমিক লক্ষণ", th_4: "সমাধান / চিকিৎসা",
+                t1_r1_c1: "কিডনিতে পাথর", t1_r1_c2: "কম পানি খাওয়া, ক্যাফেইন বা লবণের আধিক্য।", t1_r1_c3: "পিঠের একপাশে তীব্র ব্যথা, প্রস্রাবে রক্ত বা তীব্র জ্বালা-পোড়া।", t1_r1_c4: "পর্যাপ্ত পানি পান, ওষুধ বা লেজার থেরাপি/অপারেশন।",
+                t1_r2_c1: "UTI ইনফেকশন", t1_r2_c2: "মূত্রনালীতে ব্যাকটেরিয়ার সংক্রমণ।", t1_r2_c3: "বারবার প্রস্রাবের বেগ, প্রস্রাবে দুর্গন্ধ ও জ্বালা-পোড়া।", t1_r2_c4: "অ্যান্টিবায়োটিক এবং প্রচুর পানি ও ডাবের পানি পান।",
+                t1_r3_c1: "AKI (ইনজুরি)", t1_r3_c2: "হঠাৎ রক্তপাত, ডিহাইড্রেশন বা ওষুধের প্রতিক্রিয়া।", t1_r3_c3: "হঠাৎ প্রস্রাব কমে যাওয়া, পায়ে পানি আসা, শরীর ফোলা।", t1_r3_c4: "তাৎক্ষণিক হাসপাতালে ভর্তি ও দ্রুত চিকিৎসা।",
+                t1_r4_c1: "CKD (ক্রনিক)", t1_r4_c2: "অনিয়ন্ত্রিত ডায়াবেটিস, দীর্ঘদিনের উচ্চ রক্তচাপ।", t1_r4_c3: "ক্ষুধা কমে যাওয়া, বমি ভাব, রাতে বারবার প্রস্রাব, ক্লান্তি।", t1_r4_c4: "প্রেশার-ডায়াবেটিস নিয়ন্ত্রণ, ডায়ালালাইসিস বা প্রতিস্থাপন।",
+                sec3_title: "৩. কখন এবং কী পরিমাণ পানি খেতে হবে?",
+                sec3_p1: "সাধারণ সুস্থ মানুষের জন্য: প্রতিদিন গড়ে ২.৫ থেকে ৩ লিটার (৮-১০ গ্লাস) পানি পান করা উচিত।",
+                sec3_h6: "পানি পানের সঠিক সময়:",
+                sec3_l1: "সকালে ঘুম থেকে উঠে ১-২ গ্লাস।",
+                sec3_l2: "খাবার খাওয়ার ৩০ মিনিট আগে বা পরে।",
+                sec3_l3: "রাতে ঘুমানোর ঠিক আগে অতিরিক্ত পানি না খাওয়া।",
+                contact_title: "স্বাস্থ্য সহায়তায় মেসেজ দিন",
+                c_name: "আপনার নাম", c_email: "আপনার ইমেইল", c_msg: "আপনার প্রশ্ন বা মতামত এখানে লিখুন...", c_btn: "মেসেজ পাঠান"
+            },
+            en: {
+                support: "Support: +880 1234 567 890",
+                login_btn: "Login / Register",
+                nav_assess: "Assessment",
+                nav_about: "Kidney Role",
+                nav_diseases: "Diseases & Treatment",
+                nav_water: "Hydration Rules",
+                nav_diet: "Dietary Guide",
+                nav_contact: "Contact Us",
+                search_ph: "Search info...",
+                disclaimer: "This platform is built purely for informational & educational purposes. Consult a doctor for medical assistance.",
+                assess_title: "Chronic Kidney Assessment",
+                assess_subtitle: "Fill in the metrics below to analyze your renal health report.",
+                form_header: "Patient Diagnostic Inputs",
+                req_text: "* All metrics required",
+                btn_analyze: "Analyze Health Data",
+                sec1_title: "1. What is Kidney & Its Functions?",
+                sec1_p1: "Human kidneys are two bean-shaped organs located on each side of the spine below the ribs.",
+                sec1_l1_b: "Blood Filtration:",
+                sec1_l1_t: "Filter waste materials and extra fluid out through urine.",
+                sec1_l2_b: "Fluid Balance:",
+                sec1_l2_t: "Maintains proper fluid levels in the body.",
+                sec1_l3_b: "Electrolyte Control:",
+                sec1_l3_t: "Regulates sodium, potassium, and phosphorus levels.",
+                sec1_l4_b: "Blood Pressure:",
+                sec1_l4_t: "Releases hormones that control blood pressure.",
+                sec1_l5_b: "Red Blood Cells:",
+                sec1_l5_t: "Produces Erythropoietin hormone to help generate red blood cells.",
+                img1_cap: "Diagram: Human Kidney Anatomy and Urinary System",
+                sec2_title: "2. Common Kidney Diseases & Solutions",
+                th_1: "Disease Name", th_2: "Primary Cause", th_3: "Early Symptoms", th_4: "Treatment / Solution",
+                t1_r1_c1: "Kidney Stones", t1_r1_c2: "Low fluid intake, excess salt or caffeine.", t1_r1_c3: "Severe back pain, blood in urine, burning sensation.", t1_r1_c4: "Drink fluids, medication or laser surgery.",
+                t1_r2_c1: "UTI Infection", t1_r2_c2: "Bacterial growth in the urinary tract.", t1_r2_c3: "Frequent urination, foul odor, burning feeling.", t1_r2_c4: "Antibiotics and drinking plenty of water.",
+                t1_r3_c1: "AKI (Acute Injury)", t1_r3_c2: "Sudden blood loss, severe dehydration.", t1_r3_c3: "Sudden drop in urine, swollen legs or body.", t1_r3_c4: "Immediate hospital admission & care.",
+                t1_r4_c1: "CKD (Chronic)", t1_r4_c2: "Uncontrolled diabetes, hypertension.", t1_r4_c3: "Loss of appetite, nausea, fatigue, frequent night urination.", t1_r4_c4: "Control BP/Diabetes, Dialysis or Transplant.",
+                sec3_title: "3. Hydration Rules & Water Intake",
+                sec3_p1: "For Healthy Adults: Drink 2.5 to 3 Liters (8-10 glasses) of water daily.",
+                sec3_h6: "Best Times to Drink Water:",
+                sec3_l1: "1-2 glasses right after waking up.",
+                sec3_l2: "30 minutes before or after meals.",
+                sec3_l3: "Avoid drinking excess water right before sleep.",
+                contact_title: "Send Us a Health Query",
+                c_name: "Your Name", c_email: "Your Email", c_msg: "Write your question or feedback here...", c_btn: "Send Message"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Text Elements Translation
+            document.querySelectorAll("[data-key]").forEach(element => {
+                const key = element.getAttribute("data-key");
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Input Placeholders Translation
+            document.querySelectorAll("[data-key-placeholder]").forEach(element => {
+                const key = element.getAttribute("data-key-placeholder");
+                if (translations[lang] && translations[lang][key]) {
+                    element.setAttribute("placeholder", translations[lang][key]);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
